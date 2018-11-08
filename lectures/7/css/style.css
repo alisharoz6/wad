@@ -1,0 +1,15 @@
+#main {
+
+    max-width: 400px;
+	margin: auto;
+	
+}
+.pet {
+border: dashed;
+    border-color: #fa0060;
+    border-radius: inherit; 
+    border-radius: 12px;
+    border-width: 5px;
+    box-shadow: 7px 5px 7px 3px lightblue;
+    
+	}
