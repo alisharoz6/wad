@@ -1,3 +1,6 @@
+// wrote this just so the commit gets up on my git
+
+
 //============================================
 //-----------  STEP - 1 ----------------------
 //============================================
@@ -8,7 +11,9 @@ function add() {
     var task = document.getElementById("task").value;
     todos.push(task);
     document.getElementById('todos').innerText = todos;
-}*/
+}
+ In this step we can see that elements are added and they are seperated by a comma in a single line.
+*/
 
 
 //============================================
@@ -34,7 +39,11 @@ function show() {
         ul.appendChild(li);
     }
     document.getElementById('todos').appendChild(ul);
-}*/
+}
+
+This step seperates the tasks with a new line and a border but when we add a new task, it gets saved along with the previous tasks again.
+
+*/
 
 
 //============================================
@@ -84,6 +93,9 @@ function show() {
     document.getElementById('todos').appendChild(ul);
 }
 show();
+
+This step removes the error from previous step. Now it adds one task per line. With that it also adds a delete button but upon clicking it doesn't work and the screen remains the same.
+
 */
 
 
@@ -93,7 +105,7 @@ show();
 //============================================
 
 
-/*function getTodos() {
+function getTodos() {
     var todos = [];
     var todos_str = localStorage.getItem('todo');
     if(todos_str !== null)
@@ -162,7 +174,11 @@ function isDone(e) {
     localStorage.setItem('todo',JSON.stringify(todos));
     show();
 }
-show();*/
+show();
+
+// Now it deletes the task when we click the delete button
+
+
 
 
 
