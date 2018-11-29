@@ -17,52 +17,85 @@ var questions = [{
     choices : [ "select",
         "if",
         "for",
-        "none of the above"],
+        "None of the above"],
     correctAnswer : 1
-}
-];
+}];
 
 var currentQuestion = 0;
 var correctAnswers = 0;
 var quizOver = false;
 displayCurrentQuestion();
 document.getElementById("quiz-message").style.display = 'none';
-// document.getElementById("question").innerHTML=questions[currentQuestion].question;
-// document.getElementById("choice-list").innerHTML=questions[currentQuestion].choices;
 
 function displayNext() {
     /*Write your code here */
-
-    document.getElementById("question").innerHTML=questions[currentQuestion].question;
-    for(var x=0;x<4;x++)
+    // var n= document.getElementById("next-btn");
+    // n.innerText='Next Question';
+    if(currentQuestion<=3)
     {
-        document.getElementById("choice-list").innerHTML+= '<li>'+'<input type="radio" name="abn">'+questions[currentQuestion].choices[x]+ '</li>';
+        var opt=document.querySelector("input[type=radio]:checked");
+        if(opt==0)
+        {
+            var qm=document.getElementById("quiz-message");
+            qm.innerText='Please select an answer';
+            var Choiceopt=document.getElementById("choice-list");
+            Choiceopt.innerHTML='';
+        }
+        else if (currentQuestion<3){
+            if(opt.id==questions[currentQuestion].correctAnswer)
+            {
+                correctAnswers++;
+            }
+            var Choiceopt=document.getElementById("choice-list");
+            Choiceopt.innerHTML='';
+            currentQuestion++;
+        }
+        if(currentQuestion!=3) {
+            displayCurrentQuestion();
+        }
+        else
+        {
+            displayScore();
+            var qm=document.getElementById("quiz-message");
+
+            currentQuestion++;
+            var n= document.getElementById("next-btn");
+            n.innerText='Reset';
+        }
+
     }
-
-    currentQuestion++;
-
-
+    else {
+        resetQuiz();
+    }
 
 }
 
 function displayCurrentQuestion() {
+
     /*Write your code here */
-    document.getElementById("question").innerHTML=questions[currentQuestion].question;
-    var choicelistid=document.getElementById("choice");
-    choicelistid=innerHTML=0;
-    for(var x=0;x<4;x++)
+    var n= document.getElementById("next-btn");
+    n.innerText='Next Question';
+    var qid=document.getElementById("question");
+    qid.innerHTML='<p>'+questions[currentQuestion].question+'<p>';
+    var Choiceopt=document.getElementById("choice-list");
+    for(var i=0;i<questions[currentQuestion].choices.length;i++)
     {
-        document.getElementById("choice-list").innerHTML+= '<li>'+'<input type="radio" name="abn">'+questions[currentQuestion].choices[x]+ '</li>';
+        Choiceopt.innerHTML += '<li>'+'<input id="'+i+'" type="radio" name="abn">'+ questions[currentQuestion].choices[i] +'</li>';
     }
-    currentQuestion++;
+
+
 }
 
 function resetQuiz() {
+    var n = document.getElementById("next-btn");
+    n.innerText='Reset';
     currentQuestion = 0;
     correctAnswers = 0;
     hideScore();
+    displayCurrentQuestion();
 }
 function displayScore() {
+
     document.getElementById("result").innerHTML = "you scored: " + correctAnswers + " out of: " + questions.length;
     document.getElementById("result").style.display = 'block';
 }
